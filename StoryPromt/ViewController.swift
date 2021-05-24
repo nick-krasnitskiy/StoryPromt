@@ -30,6 +30,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func generateStoryPromt(_ sender: UIButton) {
+        updateStoryPromt()
+        print(storyPromt)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +44,19 @@ class ViewController: UIViewController {
         storyPromt.adjective = "smelly"
         storyPromt.verb = "burps"
         storyPromt.number = Int(numberSlider.value)
-        print(storyPromt)
     }
-
-
+    
+    func updateStoryPromt() {
+        storyPromt.noun = nounTextField.text ?? ""
+        storyPromt.adjective = adjectiveTextField.text ?? ""
+        storyPromt.verb = verbTextField.text ?? ""
+    }
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        updateStoryPromt()
+        return true
+    }
+}
