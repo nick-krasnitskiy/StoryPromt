@@ -34,7 +34,15 @@ class ViewController: UIViewController {
     
     @IBAction func generateStoryPromt(_ sender: UIButton) {
         updateStoryPromt()
-        print(storyPromt)
+        if storyPromt.isValid() {
+            print(storyPromt)
+        } else {
+            let alert = UIAlertController(title: "Invalid Story Promt", message: "Please fill out all of the fields", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in }
+            alert.addAction(action)
+            present(alert, animated: true)
+        }
+        
     }
     
     override func viewDidLoad() {
