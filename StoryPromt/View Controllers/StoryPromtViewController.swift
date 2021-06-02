@@ -23,5 +23,13 @@ class StoryPromtViewController: UIViewController {
         
         storyPromtTextView.text = storyPrompt.description
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 
 }
