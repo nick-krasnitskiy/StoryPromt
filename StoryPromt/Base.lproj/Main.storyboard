@@ -141,7 +141,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Generate Story Promt"/>
                                         <connections>
-                                            <segue destination="f8o-vb-y3Q" kind="show" id="dOD-QQ-lgT"/>
+                                            <action selector="generateStoryPromt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e53-pj-1yj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -163,6 +163,7 @@
                         <outlet property="numberSlider" destination="9jY-NJ-eiV" id="3Sy-Wo-qge"/>
                         <outlet property="storyPromtImageView" destination="51j-YR-KIi" id="kBr-9W-8hW"/>
                         <outlet property="verbTextField" destination="C7Z-pp-DSx" id="1mV-h4-gt8"/>
+                        <segue destination="f8o-vb-y3Q" kind="show" identifier="StoryPromt" id="crb-5z-GPV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
