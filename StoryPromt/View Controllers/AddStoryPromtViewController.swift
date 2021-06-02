@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class ViewController: UIViewController {
+class AddStoryPromtViewController: UIViewController {
     
     @IBOutlet weak var nounTextField: UITextField!
     @IBOutlet weak var adjectiveTextField: UITextField!
@@ -17,25 +17,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var storyPromtImageView: UIImageView!
     
-    let storyPromt = StoryPromptEntry()
+    let storyPrompt = StoryPromptEntry()
     
     @IBAction func changeNumber(_ sender: UISlider) {
         numberLabel.text = "Number: \(Int(sender.value))"
-        storyPromt.number = Int(sender.value)
+        storyPrompt.number = Int(sender.value)
     }
     
     @IBAction func changeStoryType(_ sender: UISegmentedControl) {
         if let genre = StoryPrompts.Genre(rawValue: sender.selectedSegmentIndex) {
-            storyPromt.genre = genre
+            storyPrompt.genre = genre
         } else {
-            storyPromt.genre = .scifi
+            storyPrompt.genre = .scifi
         }
     }
     
     @IBAction func generateStoryPromt(_ sender: UIButton) {
-        updateStoryPromt()
-        if storyPromt.isValid() {
-            print(storyPromt)
+        updateStoryPrompt()
+        if storyPrompt.isValid() {
+            print(storyPrompt)
         } else {
             let alert = UIAlertController(title: "Invalid Story Promt", message: "Please fill out all of the fields", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default) { (action) in }
@@ -50,20 +50,20 @@ class ViewController: UIViewController {
         
         numberSlider.value = 7.5
         
-        storyPromt.noun = "toaster"
-        storyPromt.adjective = "smelly"
-        storyPromt.verb = "burps"
-        storyPromt.number = Int(numberSlider.value)
+        storyPrompt.noun = "toaster"
+        storyPrompt.adjective = "smelly"
+        storyPrompt.verb = "burps"
+        storyPrompt.number = Int(numberSlider.value)
         storyPromtImageView.isUserInteractionEnabled = true
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage))
         storyPromtImageView.addGestureRecognizer(gestureRecognizer)
     }
     
-    func updateStoryPromt() {
-        storyPromt.noun = nounTextField.text ?? ""
-        storyPromt.adjective = adjectiveTextField.text ?? ""
-        storyPromt.verb = verbTextField.text ?? ""
+    func updateStoryPrompt() {
+        storyPrompt.noun = nounTextField.text ?? ""
+        storyPrompt.adjective = adjectiveTextField.text ?? ""
+        storyPrompt.verb = verbTextField.text ?? ""
     }
     
     @objc func changeImage() {
@@ -77,15 +77,15 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension AddStoryPromtViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        updateStoryPromt()
+        updateStoryPrompt()
         return true
     }
 }
 
-extension ViewController: PHPickerViewControllerDelegate {
+extension AddStoryPromtViewController: PHPickerViewControllerDelegate {
   func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
     if !results.isEmpty {
       let result = results.first!
